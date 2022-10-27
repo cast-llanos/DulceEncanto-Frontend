@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TablaCategorias from "./categorias/TablaCategorias";
+import Banner from "./general/Banner";
+import Header from "./general/Header";
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // Se retorna dentro del div, pues retorna un único elemento envoltorio
+    <div>
+      <Header/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Banner />} exact></Route>
+          <Route path="/categorias" element={<TablaCategorias/>} exact></Route>
+        </Routes>
+      </BrowserRouter>
+      <it>¡Hola mundo!</it>
     </div>
   );
 }
