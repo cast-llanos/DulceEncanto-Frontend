@@ -10,7 +10,9 @@ import FormProductos from "./componentes/productos/FormProductos";
 function App() {
   return (
     <div>
-      <img src={logo} alt=""/>
+      <div className  = "row">
+        <img src={logo} alt=""/>
+      </div>
       <Header></Header>
       <BrowserRouter>
         <Routes>
