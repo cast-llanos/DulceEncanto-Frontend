@@ -1,14 +1,14 @@
 const Header = () => {
     return (
-        <div className="px-4">
-            <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-                <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                    <span className="fs-4"> Dulce Encanto </span>
+        <div>
+            <header className="d-flex flex-wrap justify-content-center px-3 py-3 mb-3" style={{ backgroundColor: "#FAB900" }}>
+                <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none" style={{ color: "#ffff00" }}>
                 </a>
 
                 <ul className="nav nav-pills">
                     <li className="nav-item"><a href="/" className="nav-link active" aria-current="page">Inicio</a></li>
-                    <li className="nav-item"><a href="/categorias" className="nav-link">Categorias</a></li>
+                    <li className="nav-item"><a href="/categorias" className="nav-link" style={{ color: "#000000" }}>Categorías</a></li>
+                    <li className="nav-item"><a href="/productos" className="nav-link" style={{ color: "#000000" }}>Productos</a></li>
                 </ul>
             </header>
         </div>

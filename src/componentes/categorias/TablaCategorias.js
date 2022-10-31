@@ -1,12 +1,13 @@
-import categoriaServicios from "../../servicios/CategoriaServicio";
+import categoriaServicios from "../../servicios/categoriaServicios"
 
 const TablaCategorias = () => {
-    const listaCategorias = categoriaServicios.listarCategorias();
+
+    const listaCategorias = categoriaServicios.obtenerCategorias();
 
     return (
-        <div className="container">
-            <h3> Lista Categorías <a href="/categorias/form" className="btn btn-sm btn-success">Agregar</a> </h3>
-            <table className="table table-sm container">
+        <div className  = "container">
+            <h3 style={{ color: "#0A587A"}}>Lista de Categorías <a href="/categorias/form" className= "btn btn-success btn-sm me-2">Agregar nuevo</a></h3>
+            <table className="table table-sm table-striped table-bordered align-middle">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -19,9 +20,10 @@ const TablaCategorias = () => {
                         listaCategorias.map((categoria) => (
                             <tr>
                                 <td>{categoria.nombre}</td>
-                                <td>{categoria.habilitado ? "☑" : "☐"}</td>
+                                <td>{categoria.habilitado ? "Sí" : "No"}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm" >Editar</button>
+                                    <button className= "btn btn-info btn-sm me-2">Editar</button>
+                                    <button className= "btn btn-danger btn-sm">Eliminar</button>
                                 </td>
                             </tr>
                         ))
@@ -29,11 +31,7 @@ const TablaCategorias = () => {
                 </tbody>
             </table>
         </div>
-    );
+    )
 }
 
-/*
-    De HTML a JS: Se usa {}
-    De JS a HTML: Se usa ()
-*/
 export default TablaCategorias;
