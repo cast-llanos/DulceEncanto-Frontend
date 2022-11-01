@@ -19,7 +19,7 @@ const TablaCategorias = () => {
                 if (respuesta.data.length === 0) {
                     setEstado(Estados.VACIO);
                 } else {
-                    setListaCategorias(respuesta);
+                    setListaCategorias(respuesta.data);
                     setEstado(Estados.OK);
                 }
             } catch (error) {
