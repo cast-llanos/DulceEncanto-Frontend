@@ -6,6 +6,8 @@ import logo from "../src/imgs/logo.jpg";
 import FormCategorias from "./componentes/categorias/FormCategorias";
 import TablaProductos from "./componentes/productos/TablaProductos";
 import FormProductos from "./componentes/productos/FormProductos";
+import React from "react";
+
 
 function App() {
   return (
