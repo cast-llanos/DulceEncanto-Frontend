@@ -1,6 +1,6 @@
 import categoriaServicios from "../../servicios/categoriaServicios"
 import Estados from "../../enums/Estados"
-import { useEffect, useState} from "react";
+import { useEffect, useState} from "react"
 
 const TablaCategorias = () => {
 

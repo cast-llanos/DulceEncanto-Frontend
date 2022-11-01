@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const productos = [
     {
         nombre : "Nutty Berry Mix",
@@ -22,7 +24,8 @@ const productos = [
 const productoServicios = {};
 
 productoServicios.obtenerProductos = () => {
-    return productos;
+    
+    return axios.get("http://localhost:8000/api/productos"); 
 }
 
 export default productoServicios;
