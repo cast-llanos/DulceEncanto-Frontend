@@ -1,25 +1,35 @@
 import categoriaServicios from "../../servicios/categoriaServicios"
 import Estados from "../../enums/Estados"
+import { useEffect, useState} from "react";
 
 const TablaCategorias = () => {
 
-    let listaCategorias;
-    let estado;
+    // Implementación de Hook de Cambio de Estado en una variable: Cuando cambia internamente sus datos
+    const [listaCategorias, setListaCategorias] = useState([]);
+    const [estado, setEstado] = useState(Estados.CARGANDO);
 
-    const cargarPagina = () => {
-        listaCategorias = categoriaServicios.obtenerCategorias();
+    // Implementación de Hook de Constructor: Cuando se carga la página u ocurre un cambio
+    useEffect(() => {
 
-        if (listaCategorias.length === 0) {
-            estado = Estados.VACIO;
-        } else {
-            estado = Estados.OK;
+        const cargarDatos = async () => {
+
+            try {
+                const respuesta = await categoriaServicios.obtenerCategorias();
+
+                if (respuesta.data.length === 0) {
+                    setEstado(Estados.VACIO);
+                } else {
+                    setListaCategorias(respuesta);
+                    setEstado(Estados.OK);
+                }
+            } catch (error) {
+                setEstado(Estados.ERROR);
+            }
         }
 
-        estado = Estados.CARGANDO;
+        cargarDatos();
 
-    }
-
-    cargarPagina();
+    }, [])
 
     return (
         <div className="container">
@@ -47,9 +57,13 @@ const TablaCategorias = () => {
                             ) :
                             (estado === Estados.VACIO) ?
                                 (<tr>
-                                    <td align="center" colSpan="4"> No hay datos </td>
+                                    <td align="center" colSpan="4"> No hay datos. </td>
                                 </tr>
                                 ) :
+                                (estado === Estados.ERROR) ?
+                                (<tr>
+                                    <td align="center" colSpan="4"> Error. Intente nuevamente. </td>
+                                </tr>):
                                 (
                                     listaCategorias.map((categoria) => (
                                         <tr>
