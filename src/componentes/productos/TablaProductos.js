@@ -6,7 +6,7 @@ const TablaProductos = () => {
 
     return (
         <div className  = "container">
-            <h3 style={{ color: "#0A587A"}}>Lista de Productos <a href="/productos/form" className= "btn btn-success btn-sm me-2">Agregar nuevo</a></h3>
+            <h3 style={{ color: "#0A587A"}}> <i className="bi bi-card-list"></i> Lista de Productos <a href="/productos/form" className= "btn btn-success btn-sm me-2">Agregar nuevo</a></h3>
             <table className="table table-sm table-striped table-bordered align-middle">
                 <thead>
                     <tr>

@@ -21,6 +21,7 @@ const categoriaServicios = {};
 
 categoriaServicios.obtenerCategorias = () => {
     return categorias;
+    //return [];
 }
 
 export default categoriaServicios;
