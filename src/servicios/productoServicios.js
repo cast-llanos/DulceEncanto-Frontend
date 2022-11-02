@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios from "axios"; // Trae las funcionalidades para conexión remota con la base de datos
 
+/*
 const productos = [
     {
         nombre : "Nutty Berry Mix",
@@ -20,6 +21,7 @@ const productos = [
         imagen : "/images/m-ms.jpg"
     }
 ]
+*/
 
 const productoServicios = {};
 
