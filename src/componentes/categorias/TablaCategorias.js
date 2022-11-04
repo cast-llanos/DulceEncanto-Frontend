@@ -23,18 +23,17 @@ const TablaCategorias = () => {
     }
   };
 
-// Implementación de Hook de Constructor: Cuando se carga la página u ocurre un cambio
+  // Implementación de Hook de Constructor: Cuando se carga la página u ocurre un cambio
   useEffect(() => {
-
     cargarDatos();
-    
   }, []);
 
+  // Función listener del input box para buscar
   const cambiarCriterio = (event) => {
-    // Función listener del input box para buscar
     setCriterio(event.target.value);
   };
 
+  // Función para conectar la búsqueda de la BD, basado en queries
   const buscarCategoria = async (event) => {
     event.preventDefault();
 
@@ -72,12 +71,12 @@ const TablaCategorias = () => {
           name="criterio"
           placeholder="Búsqueda por: "
         />
-        <button className="btn btn-sm btn-primary" onClick={buscarCategoria}>
+        <button className="btn btn-sm btn-primary ms-2" onClick={buscarCategoria}>
           Buscar
         </button>
       </form>
 
-      <table className="table table-sm table-striped table-bordered align-middle">
+      <table className="table table-sm table-striped table-bordered align-middle mt-3">
         <thead>
           <tr>
             <th>Nombre</th>
@@ -115,11 +114,11 @@ const TablaCategorias = () => {
             </tr>
           ) : (
             listaCategorias.map((categoria) => (
-              <tr>
+              <tr key = {categoria._id}>
                 <td>{categoria.nombre}</td>
                 <td>{categoria.habilitado ? "Sí" : "No"}</td>
                 <td>
-                  <button className="btn btn-info btn-sm me-2">Editar</button>
+                  <a href={"categorias/form/"+categoria._id} className="btn btn-info btn-sm me-2">Editar</a>
                   <button className="btn btn-danger btn-sm">Eliminar</button>
                 </td>
               </tr>
