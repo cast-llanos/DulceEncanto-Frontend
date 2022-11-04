@@ -19,10 +19,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Banner></Banner>} exact></Route>
+          
           <Route path="/categorias" element={<TablaCategorias></TablaCategorias>} exact></Route>
           <Route path="/categorias/form" element={<FormCategorias></FormCategorias>} exact></Route>
+          <Route path="/categorias/form/:id" element={<FormCategorias />} exact></Route>
+
           <Route path="/productos" element={<TablaProductos></TablaProductos>} exact></Route>
           <Route path="/productos/form" element={<FormProductos></FormProductos>} exact></Route>
+          
         </Routes>
       </BrowserRouter>
     </div>
