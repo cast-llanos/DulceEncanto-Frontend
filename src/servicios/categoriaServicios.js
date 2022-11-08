@@ -52,4 +52,10 @@ categoriaServicios.modificarCategoria = (id,categoria) => {
 
 }
 
+categoriaServicios.borrarCategoria = (id) =>{
+
+    return axios.delete("http://localhost:8000/api/categorias/" + id);
+
+}
+
 export default categoriaServicios;

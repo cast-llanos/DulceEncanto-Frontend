@@ -83,7 +83,7 @@ const TablaProductos = () => {
                 <td>{producto.nombre}</td>
                 <td>{producto.marca}</td>
                 <td>{producto.precio}</td>
-                <td>{producto.keywords
+                <td>{producto.keywords.toString().replaceAll(",",", ")
                         //<ul>
                         //{
                         //producto.keywords.array.forEach(element => {
@@ -91,7 +91,7 @@ const TablaProductos = () => {
                         //})
                         //</ul>
                     }</td>
-                <td>{producto.categoria}</td>
+                <td>{producto.categoria.toString().replaceAll(",",", ")}</td>
                 <td>{producto.disponibilidad ? "Sí" : "No"}</td>
                 <td>{producto.imagen}</td>
                 <td>
