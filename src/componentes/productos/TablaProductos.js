@@ -83,7 +83,7 @@ const TablaProductos = () => {
                 <td>{producto.nombre}</td>
                 <td>{producto.marca}</td>
                 <td>{producto.precio}</td>
-                <td>{producto.keywords
+                <td>{producto.keywords.toString()
                         //<ul>
                         //{
                         //producto.keywords.array.forEach(element => {

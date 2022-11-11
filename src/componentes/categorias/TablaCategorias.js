@@ -114,11 +114,11 @@ const TablaCategorias = () => {
             </tr>
           ) : (
             listaCategorias.map((categoria) => (
-              <tr key = {categoria._id}>
+              <tr key={categoria._id}>
                 <td>{categoria.nombre}</td>
                 <td>{categoria.habilitado ? "Sí" : "No"}</td>
                 <td>
-                  <a href={"categorias/form/"+categoria._id} className="btn btn-info btn-sm me-2">Editar</a>
+                  <a href={"categorias/form/" + categoria._id} className="btn btn-info btn-sm me-2">Editar</a>
                   <button className="btn btn-danger btn-sm">Eliminar</button>
                 </td>
               </tr>

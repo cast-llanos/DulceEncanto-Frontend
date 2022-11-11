@@ -1,54 +1,34 @@
 import axios from "axios";
-
-/*
-const categorias = [
-    {
-        nombre : "Chocolates",
-        habilitado : true
-    },
-    {
-        nombre : "Cereales",
-        habilitado : false
-    },
-    {
-        nombre : "Galletas",
-        habilitado : true
-    },
-    {
-        nombre : "Frutos secos",
-        habilitado : true
-    }
-]
-*/
+const URI = "https://dulce-encanto-api.herokuapp.com/";
 
 const categoriaServicios = {};
 
 categoriaServicios.obtenerCategorias = () => {
 
-    return axios.get("http://localhost:8000/api/categorias");
+    return axios.get(URI+"api/categorias");
 }
 
 categoriaServicios.obtenerCategoriaPorCriterio = (query) => {
 
-    return axios.get("http://localhost:8000/api/categorias?q=" + query)
+    return axios.get(URI+"api/categorias?q=" + query)
 
 }
 
 categoriaServicios.obtenerCategoriaPorId = (id) => {
 
-    return axios.get("http://localhost:8000/api/categorias/" + id)
+    return axios.get(URI+"api/categorias/" + id)
 
 }
 
 categoriaServicios.guardarCategoria = (categoria) => {
 
-    return axios.post("http://localhost:8000/api/categorias", categoria);
+    return axios.post(URI+"api/categorias", categoria);
 
 }
 
 categoriaServicios.modificarCategoria = (id,categoria) => {
 
-    return axios.put("http://localhost:8000/api/categorias/" + id, categoria);
+    return axios.put(URI+"api/categorias/" + id, categoria);
 
 }
 
