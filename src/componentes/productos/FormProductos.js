@@ -1,5 +1,6 @@
 
 const FormProductos = () => {
+    
     return (
         <div className="container">
             <h3 style={{ color: "#0A587A" }}>Nuevo Producto</h3>
