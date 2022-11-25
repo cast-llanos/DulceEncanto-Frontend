@@ -1,3 +1,6 @@
+import img1 from "../../imgs/chocolate.jpg";
+import img2 from "../../imgs/confiteria.jpg";
+import img3 from "../../imgs/galleta.jpg";
 
 const Banner = () => {
     return (
@@ -9,7 +12,7 @@ const Banner = () => {
             </div>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <svg className="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#39261E" /></svg>
+                <img src={img1} class="d-block w-100" alt=""/>
 
                     <div className="container">
                         <div className="carousel-caption text-start">
@@ -18,7 +21,7 @@ const Banner = () => {
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <svg className="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#AED6F1" /></svg>
+                <img src={img2} class="d-block w-100" alt=""/>
 
                     <div className="container">
                         <div className="carousel-caption">
@@ -27,7 +30,7 @@ const Banner = () => {
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <svg className="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#FA3100" /></svg>
+                <img src= {img3} class="d-block w-100" alt=""/>
 
                     <div className="container">
                         <div className="carousel-caption text-end">
