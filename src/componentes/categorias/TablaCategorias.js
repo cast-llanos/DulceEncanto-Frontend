@@ -11,7 +11,6 @@ const TablaCategorias = () => {
   const [categoriaBorrar, setCategoriaBorrar] = useState("");
 
   const cargarDatos = async () => {
-
     try {
       const respuesta = await categoriaServicios.obtenerCategorias();
 
@@ -28,7 +27,6 @@ const TablaCategorias = () => {
 
   // Implementación de Hook de Constructor: Cuando se carga la página u ocurre un cambio
   useEffect(() => {
-
     cargarDatos();
   }, []);
 
@@ -59,18 +57,15 @@ const TablaCategorias = () => {
 
   // Funciónes para ejecutar la función de eliminar desde la BD
   const confirmarBorrado = (id, nombre) => {
-
     setIdBorrar(id);
     setCategoriaBorrar(nombre);
     //console.log(id + "/n" + nombre);
-  }
+  };
 
   const borrarCategoria = async () => {
-
     await categoriaServicios.borrarCategoria(idBorrar);
     cargarDatos();
-
-  }
+  };
 
   return (
     <div className="container">
@@ -90,7 +85,10 @@ const TablaCategorias = () => {
           name="criterio"
           placeholder="Búsqueda por: "
         />
-        <button className="btn btn-sm btn-primary ms-2" onClick={buscarCategoria}>
+        <button
+          className="btn btn-sm btn-primary ms-2"
+          onClick={buscarCategoria}
+        >
           Buscar
         </button>
       </form>
@@ -137,10 +135,20 @@ const TablaCategorias = () => {
                 <td>{categoria.nombre}</td>
                 <td>{categoria.habilitado ? "Sí" : "No"}</td>
                 <td>
-                  <a href={"categorias/form/" + categoria._id} className="btn btn-info btn-sm me-2">Editar</a>
-                  <button className="btn btn-danger btn-sm"
-                    onClick={() => confirmarBorrado(categoria._id, categoria.nombre)}
-                    data-bs-toggle="modal" data-bs-target="#modalBorrar"
+                  <a
+                    href={"categorias/form/" + categoria._id}
+                    className="btn btn-info btn-sm me-2"
+                  >
+                    Editar
+                  </a>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() =>
+                      confirmarBorrado(categoria._id, categoria.nombre)
+                    }
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalBorrar"
+                    disabled
                   >
                     Eliminar
                   </button>
@@ -151,24 +159,51 @@ const TablaCategorias = () => {
         </tbody>
       </table>
 
-      <div className="modal fade" id="modalBorrar" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div
+        className="modal fade"
+        id="modalBorrar"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="staticBackdropLabel">Alerta de Eliminación</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">
+                Alerta de Eliminación
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
             <div className="modal-body">
-              ¿Desea borrar Categoría: "{categoriaBorrar}"? 
+              ¿Desea borrar Categoría: {categoriaBorrar}?
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={borrarCategoria}>Borrar</button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={borrarCategoria}
+              >
+                Borrar
+              </button>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 };
