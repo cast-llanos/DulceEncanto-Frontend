@@ -72,25 +72,26 @@ const TablaCategorias = () => {
       <h3 style={{ color: "#0A587A" }}>
         {" "}
         <i className="bi bi-card-list"></i> Lista de Categorías{" "}
-        <a href="/categorias/form" className="btn btn-success btn-sm me-2">
-          Agregar nuevo
-        </a>
       </h3>
       <form>
+        <label className="form-label me-2" htmlFor="criterio">Buscar: </label> 
         <input
           type="text"
           onChange={cambiarCriterio}
           value={criterio}
           id="criterio"
           name="criterio"
-          placeholder="Búsqueda por: "
+          placeholder="Categoría "
         />
         <button
-          className="btn btn-sm btn-primary ms-2"
+          className="btn btn-sm btn-primary ms-1 me-2"
           onClick={buscarCategoria}
         >
-          Buscar
+        <i className="bi bi-search" />
         </button>
+        <a href="/categorias/form" className="btn btn-success btn-sm me-2">
+        <i class="bi bi-cloud-plus-fill"></i>
+        </a>
       </form>
 
       <table className="table table-sm table-striped table-bordered align-middle mt-3">
@@ -133,13 +134,16 @@ const TablaCategorias = () => {
             listaCategorias.map((categoria) => (
               <tr key={categoria._id}>
                 <td>{categoria.nombre}</td>
-                <td>{categoria.habilitado ? "Sí" : "No"}</td>
+                <td>{categoria.habilitado ? 
+                (<i class="bi bi-patch-check-fill"></i>) 
+                : 
+                (<i class="bi bi-patch-minus-fill"></i>)}</td>
                 <td>
                   <a
                     href={"categorias/form/" + categoria._id}
-                    className="btn btn-info btn-sm me-2"
+                    className="btn btn-sm btn-warning me-2"
                   >
-                    Editar
+                    <i class="bi bi-pen-fill"></i>
                   </a>
                   <button
                     className="btn btn-danger btn-sm"
@@ -150,7 +154,7 @@ const TablaCategorias = () => {
                     data-bs-target="#modalBorrar"
                     disabled
                   >
-                    Eliminar
+                    <i class="bi bi-trash3-fill"></i>
                   </button>
                 </td>
               </tr>
@@ -172,7 +176,7 @@ const TablaCategorias = () => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                Alerta de Eliminación
+              <i class="bi bi-exclamation-triangle-fill"></i> Eliminación
               </h1>
               <button
                 type="button"
@@ -182,7 +186,7 @@ const TablaCategorias = () => {
               ></button>
             </div>
             <div className="modal-body">
-              ¿Desea borrar Categoría: {categoriaBorrar}?
+            ¿Desea borrar Categoría: {categoriaBorrar}?
             </div>
             <div className="modal-footer">
               <button
@@ -190,7 +194,7 @@ const TablaCategorias = () => {
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
-                Cancelar
+                <i class="bi bi-x-square-fill"></i>
               </button>
               <button
                 type="button"
@@ -198,7 +202,7 @@ const TablaCategorias = () => {
                 data-bs-dismiss="modal"
                 onClick={borrarCategoria}
               >
-                Borrar
+                <i class="bi bi-check-square-fill"></i>
               </button>
             </div>
           </div>

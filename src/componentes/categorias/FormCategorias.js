@@ -102,7 +102,7 @@ const FormCategorias = () => {
                                 value={nombre}
                                 onChange={cambiarNombre}
                                 type="text"
-                                placeholder="Ingrese categoría"
+                                placeholder=""
                                 required
                             />
                         </div>

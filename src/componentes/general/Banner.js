@@ -12,7 +12,7 @@ const Banner = () => {
             </div>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                <img src={img1} class="d-block w-100" alt=""/>
+                <img src={img1} className="d-block w-100" alt=""/>
 
                     <div className="container">
                         <div className="carousel-caption text-start">
@@ -21,7 +21,7 @@ const Banner = () => {
                     </div>
                 </div>
                 <div className="carousel-item">
-                <img src={img2} class="d-block w-100" alt=""/>
+                <img src={img2} className="d-block w-100" alt=""/>
 
                     <div className="container">
                         <div className="carousel-caption">
@@ -30,7 +30,7 @@ const Banner = () => {
                     </div>
                 </div>
                 <div className="carousel-item">
-                <img src= {img3} class="d-block w-100" alt=""/>
+                <img src= {img3} className="d-block w-100" alt=""/>
 
                     <div className="container">
                         <div className="carousel-caption text-end">
