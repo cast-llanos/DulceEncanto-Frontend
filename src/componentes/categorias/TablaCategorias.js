@@ -7,6 +7,8 @@ const TablaCategorias = () => {
   const [listaCategorias, setListaCategorias] = useState([]);
   const [estado, setEstado] = useState(Estados.CARGANDO);
   const [criterio, setCriterio] = useState("");
+  const [idBorrar, setIdBorrar] = useState("");
+  const [categoriaBorrar, setCategoriaBorrar] = useState("");
 
   const cargarDatos = async () => {
     try {
@@ -28,11 +30,6 @@ const TablaCategorias = () => {
     cargarDatos();
   }, []);
 
-  // Función listener del input box para buscar
-  const cambiarCriterio = (event) => {
-    setCriterio(event.target.value);
-  };
-
   // Función para conectar la búsqueda de la BD, basado en queries
   const buscarCategoria = async (event) => {
     event.preventDefault();
@@ -53,27 +50,48 @@ const TablaCategorias = () => {
     }
   };
 
+  // Función listener del input box para buscar
+  const cambiarCriterio = (event) => {
+    setCriterio(event.target.value);
+  };
+
+  // Funciónes para ejecutar la función de eliminar desde la BD
+  const confirmarBorrado = (id, nombre) => {
+    setIdBorrar(id);
+    setCategoriaBorrar(nombre);
+    //console.log(id + "/n" + nombre);
+  };
+
+  const borrarCategoria = async () => {
+    await categoriaServicios.borrarCategoria(idBorrar);
+    cargarDatos();
+  };
+
   return (
     <div className="container">
       <h3 style={{ color: "#0A587A" }}>
         {" "}
         <i className="bi bi-card-list"></i> Lista de Categorías{" "}
-        <a href="/categorias/form" className="btn btn-success btn-sm me-2">
-          Agregar nuevo
-        </a>
       </h3>
       <form>
+        <label className="form-label me-2" htmlFor="criterio">Buscar: </label> 
         <input
           type="text"
           onChange={cambiarCriterio}
           value={criterio}
           id="criterio"
           name="criterio"
-          placeholder="Búsqueda por: "
+          placeholder="Categoría "
         />
-        <button className="btn btn-sm btn-primary ms-2" onClick={buscarCategoria}>
-          Buscar
+        <button
+          className="btn btn-sm btn-primary ms-1 me-2"
+          onClick={buscarCategoria}
+        >
+        <i className="bi bi-search" />
         </button>
+        <a href="/categorias/form" className="btn btn-success btn-sm me-2">
+        <i class="bi bi-cloud-plus-fill"></i>
+        </a>
       </form>
 
       <table className="table table-sm table-striped table-bordered align-middle mt-3">
@@ -116,16 +134,80 @@ const TablaCategorias = () => {
             listaCategorias.map((categoria) => (
               <tr key={categoria._id}>
                 <td>{categoria.nombre}</td>
-                <td>{categoria.habilitado ? "Sí" : "No"}</td>
+                <td>{categoria.habilitado ? 
+                (<i class="bi bi-patch-check-fill"></i>) 
+                : 
+                (<i class="bi bi-patch-minus-fill"></i>)}</td>
                 <td>
-                  <a href={"categorias/form/" + categoria._id} className="btn btn-info btn-sm me-2">Editar</a>
-                  <button className="btn btn-danger btn-sm">Eliminar</button>
+                  <a
+                    href={"categorias/form/" + categoria._id}
+                    className="btn btn-sm btn-warning me-2"
+                  >
+                    <i class="bi bi-pen-fill"></i>
+                  </a>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() =>
+                      confirmarBorrado(categoria._id, categoria.nombre)
+                    }
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalBorrar"
+                    disabled
+                  >
+                    <i class="bi bi-trash3-fill"></i>
+                  </button>
                 </td>
               </tr>
             ))
           )}
         </tbody>
       </table>
+
+      <div
+        className="modal fade"
+        id="modalBorrar"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">
+              <i class="bi bi-exclamation-triangle-fill"></i> Eliminación
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+            ¿Desea borrar Categoría: {categoriaBorrar}?
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                <i class="bi bi-x-square-fill"></i>
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={borrarCategoria}
+              >
+                <i class="bi bi-check-square-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

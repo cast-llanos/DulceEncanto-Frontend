@@ -7,19 +7,24 @@ import EstadoLogin from "../../enums/EstadoLogin";
 import { ContextoUsuario } from "./ContextoUsuario";
 
 const Header = () => {
+
     const navigateTo = useNavigate();
     const { usuario, setUsuario } = useContext(ContextoUsuario);
 
     const revisarSesion = () => {
+
         if (sessionStorage.getItem("estadologin") != null) {
+
             const usuarioSesion = {
                 nombres: sessionStorage.getItem("nombres"),
+                username: sessionStorage.getItem("username"),
                 estadologin: parseInt(sessionStorage.getItem("estadologin"))
             }
-            console.log(usuarioSesion);
+            //console.log(usuarioSesion);
             setUsuario(usuarioSesion);
         }
         else {
+
             setUsuario({nombres: "", estadologin: EstadoLogin.NO_LOGUEADO});
         }
     }
@@ -48,8 +53,7 @@ const Header = () => {
                         <>
                             <div className="collapse navbar-collapse" id="menu">
                                 <div className="navbar-nav" style={{ fontWeight: 700 }}>
-                                    <a className="nav-link text-light" href="/categorias">Categorías</a>
-                                    <a className="nav-link text-light" href="/productos">Productos</a>
+                                    <a className="nav-link text-light" href="/categorias">Carrito</a>
                                 </div>
                             </div>
                             <div className="col-md-3 text-end">
@@ -57,36 +61,23 @@ const Header = () => {
                                 <button type="button" className="btn btn-sm btn-warning">Registro</button>
                             </div>
                         </>
-                    ) :
-                    usuario.estadologin === EstadoLogin.ADMIN ? (
+                    ):
+                    (
                             <>
                                 <div className="collapse navbar-collapse" id="menu">
                                     <div className="navbar-nav" style={{ fontWeight: 700 }}>
                                         <a className="nav-link text-light" href="/categorias">Categorías</a>
                                         <a className="nav-link text-light" href="/productos">Productos</a>
-                                        <a className="nav-link text-light" href="/clientes">Clientes</a>
+                                        <a className="nav-link text-light" href="/administradores">Administradores</a>
+                                        <a className="nav-link text-light" href="/dashboard">Dashboard</a>
                                     </div>
                                 </div>
                                 <div className="col-md-4 text-end text-light">
-                                    {usuario.nombres}
-                                    <button onClick={cerrarSesion} type="button" className="btn btn-sm btn-warning ms-2">Cerrar sesion</button>
+                                    ¡Bienvenido {usuario.username}!
+                                    <button onClick={cerrarSesion} type="button" className="btn btn-sm btn-warning ms-4">Cerrar Sesión</button>
                                 </div>
                             </>
-                        ) : (
-                            <>
-                                <div className="collapse navbar-collapse" id="menu">
-                                    <div className="navbar-nav" style={{ fontWeight: 700 }}>
-                                        <a className="nav-link text-light" href="/categorias">Categorías</a>
-                                        <a className="nav-link text-light" href="/productos">Productos</a>
-                                        <a className="nav-link text-light" href="/carrito">Carrito</a>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 text-end text-light">
-                                    {usuario.nombres}
-                                    <button onClick={cerrarSesion} type="button" className="btn btn-sm btn-warning">Cerrar sesion</button>
-                                </div>
-                            </>
-                        )
+                    )
                 }
             </div>
         </nav>

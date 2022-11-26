@@ -3,11 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import categoriaServicios from "../../servicios/categoriaServicios";
 
 const FormCategorias = () => {
-    // Hook UseState incorpora variables con la aplicación, que vincula JS con HTML, en forma de cascada.
-    const [nombre, setNombre] = useState("");
-    const [habilitado, setHabilitado] = useState(false);
-
-    const [titulo, setTitulo] = useState("");
 
     // Hook para navegar entre diferentes rutas
     const navigateTo = useNavigate();
@@ -15,27 +10,10 @@ const FormCategorias = () => {
     // Hook para capturar parámetros de la ruta, p.eg, id
     const { id } = useParams();
 
-    // Hook para usar la carga dinámica para capturar el id
-    useEffect(() => {
-        if (id != null) {
-            setTitulo("Editar");
-            cargarCategoria();
-        }else{
-            setTitulo("Nueva");
-        }
-
-    }, [])
-
-
-    // Obtener los eventos de cambio de estado: cuando se ingresa información
-    const cambiarNombre = (event) => {
-        setNombre(event.target.value);
-    };
-
-    // Obtener los eventos de cambio de estado: cuando se habilita o deshabilita
-    const cambiarHabilitado = (event) => {
-        setHabilitado(event.target.checked);
-    };
+    // Hook UseState incorpora variables con la aplicación, que vincula JS con HTML, en forma de cascada.
+    const [nombre, setNombre] = useState("");
+    const [habilitado, setHabilitado] = useState(false);
+    const [titulo, setTitulo] = useState("");
 
     // Crear un objeto JSON cuando se presione el botón "Guardar"
     const guardarCategoria = async (event) => {
@@ -50,21 +28,18 @@ const FormCategorias = () => {
             };
             //console.log(categoriaNueva);
 
-            if(id == null){
+            if (id == null) {
                 const respuesta = await categoriaServicios.guardarCategoria(datosCategoria);
-
-            }else{
-                const respuesta = await categoriaServicios.modificarCategoria(id,datosCategoria);
-
+            } else {
+                const respuesta = await categoriaServicios.modificarCategoria(id, datosCategoria);
             }
 
             // Luego de guardado, que regrese a la lista de categorías
             navigateTo("/categorias");
-
         } catch (error) {
             console.log("Error: " + error);
         }
-    };
+    }
 
     const cargarCategoria = async () => {
         try {
@@ -78,9 +53,29 @@ const FormCategorias = () => {
         } catch (error) {
             console.log("Error: " + error);
         }
+    }
 
+    // Hook para usar la carga dinámica para capturar el id
+    useEffect(() => {
+        if (id != null) {
+            setTitulo("Editar");
+            cargarCategoria();
+        } else {
+            setTitulo("Nueva");
+        }
 
+    }, [])
+
+    // Obtener los eventos de cambio de estado: cuando se ingresa información
+    const cambiarNombre = (event) => {
+        setNombre(event.target.value);
     };
+
+    // Obtener los eventos de cambio de estado: cuando se habilita o deshabilita
+    const cambiarHabilitado = (event) => {
+        setHabilitado(event.target.checked);
+    };
+
 
     return (
         <div className="container">
@@ -92,7 +87,9 @@ const FormCategorias = () => {
                     background: "#F8EFFB",
                 }}
             >
-                <form action="" className="row g-3 py-3">
+                <form className="row g-3 py-3"
+                    onSubmit={guardarCategoria}
+                >
                     <div className="row">
                         <div className="col-md-5">
                             <label htmlFor="inputEmail4" className="form-label">
@@ -105,7 +102,7 @@ const FormCategorias = () => {
                                 value={nombre}
                                 onChange={cambiarNombre}
                                 type="text"
-                                placeholder="Ingrese categoría"
+                                placeholder=""
                                 required
                             />
                         </div>
@@ -145,6 +142,8 @@ const FormCategorias = () => {
 export default FormCategorias;
 
 /*
+Implementación Lista Desplegable:
+
 <div className="col-md-6">
 <label for="inputState" class="form-label">Habilitado</label>
 <select className="form-select" name="habilitado" id="habilitado" value ={habilitado} onChange={cambiaHabilitado}>
@@ -153,4 +152,5 @@ export default FormCategorias;
     <option value="2">No</option>
 </select>
 </div>
+
 */
